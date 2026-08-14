@@ -1,14 +1,13 @@
 package com.example.demo.Service;
 
 import com.example.demo.Entity.Entity;
-import com.example.demo.Repo.Repo;
+import com.example.demo.Repo.Journalrepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,7 @@ public class JournalService {
 //    }
 
     @Autowired
-    private Repo journallist;
+    private Journalrepo journallist;
 
 //    public Entity findbyid(ObjectId idd) {
 //        Optional<Entity> result = journallist.findById(idd);

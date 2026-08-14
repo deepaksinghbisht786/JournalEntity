@@ -16,7 +16,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Document(collection = "Users")
+@Document(collection = "Users_Entity")
 public class User {
 
     @Id
@@ -28,5 +28,5 @@ public class User {
     private String password;
 
     @DBRef
-    private List<Entity> journals=new ArrayList();
+    private List<Entity> Journals=new ArrayList();
 }

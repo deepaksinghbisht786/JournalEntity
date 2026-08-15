@@ -24,5 +24,8 @@ public class JournalComponent_user {
     public ResponseEntity<List<Entity>> getuserJour(@PathVariable String user){
         return service.getuserJournals(user);
     }
-
+    @DeleteMapping("/{user}")
+    public String delete(@PathVariable String user){
+        return service.getUserJournaldel(user);
+    }
 }

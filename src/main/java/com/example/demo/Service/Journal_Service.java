@@ -39,4 +39,15 @@ public class Journal_Service {
      return ResponseEntity.notFound().build();
     }
 
+    public String getUserJournaldel(String username){
+        Optional<User> exist= repoo.findByuserName(username);
+     if (exist.isPresent()){
+         User user= exist.get();
+         List<Entity> journl= user.getJournals();
+         journalrepo.deleteAll(journl);
+         repoo.delete(user);
+         return "deleted" + user;
+     }
+     return "notfound";
+    }
 }

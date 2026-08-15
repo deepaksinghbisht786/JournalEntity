@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 
 @Service
@@ -21,7 +24,7 @@ public class UserService {
     UserRepo repo;
 
     public List<User> findalluser() {
-        return repo.findAll();
+        return repo.findAllUsernamesOnly();
     }
 
     public String Add(User abc) {

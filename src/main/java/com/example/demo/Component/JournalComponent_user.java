@@ -28,4 +28,9 @@ public class JournalComponent_user {
     public String delete(@PathVariable String user){
         return service.getUserJournaldel(user);
     }
+
+    @DeleteMapping("deleteall")
+    public String deleteallthings(){
+           return service.deltealll();
+    }
 }

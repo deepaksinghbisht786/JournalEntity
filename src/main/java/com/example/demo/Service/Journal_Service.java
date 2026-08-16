@@ -43,11 +43,22 @@ public class Journal_Service {
         Optional<User> exist= repoo.findByuserName(username);
      if (exist.isPresent()){
          User user= exist.get();
+         String ss=username;
          List<Entity> journl= user.getJournals();
          journalrepo.deleteAll(journl);
          repoo.delete(user);
-         return "deleted" + user;
+         return "deleted =" + ss;
      }
      return "notfound";
+    }
+
+    public String deltealll() {
+        if(repoo.count()==0 && journalrepo.count()==0)
+        {
+            return "no element exist";
+        }
+        journalrepo.deleteAll();
+        repoo.deleteAll();
+        return "deleted all  element and journals";
     }
 }

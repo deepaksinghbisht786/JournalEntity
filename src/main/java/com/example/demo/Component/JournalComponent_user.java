@@ -2,7 +2,9 @@ package com.example.demo.Component;
 
 
 import com.example.demo.Entity.Entity;
+import com.example.demo.Entity.User;
 import com.example.demo.Service.Journal_Service;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +34,10 @@ public class JournalComponent_user {
     @DeleteMapping("deleteall")
     public String deleteallthings(){
            return service.deltealll();
+    }
+
+    @PutMapping("/{userr}/{id}")
+    public  String updatejournal(@PathVariable String userr, @PathVariable ObjectId id, @RequestBody Entity abc){
+        return service.updateJournals(userr,id,abc);
     }
 }

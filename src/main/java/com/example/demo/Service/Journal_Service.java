@@ -5,6 +5,7 @@ import com.example.demo.Entity.Entity;
 import com.example.demo.Entity.User;
 import com.example.demo.Repo.Journalrepo;
 import com.example.demo.Repo.UserRepo;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -60,5 +61,22 @@ public class Journal_Service {
         journalrepo.deleteAll();
         repoo.deleteAll();
         return "deleted all  element and journals";
+    }
+
+    public String updateJournals(String username, ObjectId id, Entity journals){
+        Optional<User> exist= repoo.findByuserName(username);
+        if (exist.isPresent()){
+            User user= exist.get();
+            for(Entity search: user.getJournals()){
+                if(search.getId().equals(id)){
+                    search.setTitle(journals.getTitle());
+                    search.setContent(journals.getContent());
+                    journalrepo.save(search);
+                    return "updated journals in " + username;
+                }
+            return "journal not found";
+            }
+        }
+        return " not found the user";
     }
 }

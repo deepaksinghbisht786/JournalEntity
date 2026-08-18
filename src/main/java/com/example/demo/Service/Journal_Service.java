@@ -74,7 +74,6 @@ public class Journal_Service {
                     journalrepo.save(search);
                     return "updated journals in " + username;
                 }
-            return "journal not found";
             }
         }
         return " not found the user";

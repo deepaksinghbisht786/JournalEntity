@@ -7,6 +7,7 @@ import com.example.demo.Repo.Journalrepo;
 import com.example.demo.Repo.UserRepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.autoconfigure.WebMvcProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,22 @@ public class Journal_Service {
 
     @Autowired private Journalrepo journalrepo;
 
-    public String createJournal(Entity abc, String username){
-    Optional<User> exist= repoo.findByuserName(username);
-    if(exist.isPresent()){
-        journalrepo.save(abc);
-        User user= exist.get();
-        user.getJournals().add(abc);
-        repoo.save(user);
-        return "added to " + username;
-    }
-    return "user not found create one";
+    public String createJournal(Entity abc, String username) {
+        try {
+            Optional<User> exist = repoo.findByuserName(username);
+
+            if (exist.isPresent()) {
+                journalrepo.save(abc);
+                User user = exist.get();
+                user.getJournals().add(abc);
+                repoo.save(user);
+                return "added to " + username;
+            }
+            return "user not found create one";
+
+        } catch (Exception e) {
+            return "Something went wrong: " + e.getMessage();
+        }
     }
 
     public ResponseEntity<List<Entity>> getuserJournals (String username) {
@@ -77,5 +84,25 @@ public class Journal_Service {
             }
         }
         return " not found the user";
+    }
+
+    public String deletebyId(ObjectId id, String username){
+        Boolean exist=false;
+        try {
+         Optional<User> userExist = repoo.findByuserName(username);
+         User user= userExist.get();
+         exist = user.getJournals().removeIf(x->x.getId().equals(id));
+         if(exist){
+             journalrepo.deleteById(id);
+             repoo.save(user);
+
+         }
+
+
+        } catch (Exception e) {
+
+            throw new RuntimeException("An error occurred while deleting the entry.", e);
+        }
+        return "deltede by id:" +exist;
     }
 }

@@ -2,13 +2,11 @@ package com.example.demo.Component;
 
 
 import com.example.demo.Entity.Entity;
-import com.example.demo.Service.JournalService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

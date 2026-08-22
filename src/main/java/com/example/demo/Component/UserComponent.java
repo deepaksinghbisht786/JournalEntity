@@ -1,10 +1,7 @@
 package com.example.demo.Component;
 
 import com.example.demo.Entity.User;
-import com.example.demo.Repo.UserRepo;
-import com.example.demo.Service.JournalService;
 import com.example.demo.Service.UserService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
